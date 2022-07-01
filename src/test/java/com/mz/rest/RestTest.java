@@ -18,11 +18,6 @@ class RestTest extends RestBaseTest {
     @BeforeEach
     void setUp() {
         testPet = getTestPet();
-
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     @Test
