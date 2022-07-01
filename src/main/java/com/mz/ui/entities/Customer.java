@@ -11,4 +11,13 @@ public class Customer {
     private String firstName;
     private String secondName;
     private int postalCode;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", postalCode=" + postalCode +
+                '}';
+    }
 }

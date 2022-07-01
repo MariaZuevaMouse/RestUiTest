@@ -2,15 +2,14 @@ package com.mz.ui;
 
 import com.github.javafaker.Faker;
 import com.mz.ui.entities.Customer;
+import com.mz.ui.pages.CustomersPage;
 import com.mz.ui.pages.LoginPage;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.*;
 
 import java.util.concurrent.TimeUnit;
 
-//@TestInstance(Lifecycle.PER_CLASS)
+@Slf4j
 public class UiTest extends UiBaseTest {
     static Customer customer;
 
@@ -22,14 +21,21 @@ public class UiTest extends UiBaseTest {
                 .withSecondName(faker.name().lastName())
                 .withPostalCode(faker.hashCode());
         System.out.println(customer);
+        log.info("Test customer created '{}'", customer.toString());
     }
 
     @AfterAll
     static void afterAll() {
-        new LoginPage(driver)
-                .chooseBankManagerLogin()
-                .getBankManagerPage()
-                .openCustomers()
+
+    }
+    @AfterEach
+    void cleanTestData() {
+//        new LoginPage(driver)
+//                .chooseBankManagerLogin()
+//                .getBankManagerPage()
+//                .openCustomers()
+//                .removeCustomer(customer);
+        new CustomersPage(driver)
                 .removeCustomer(customer);
 
     }
@@ -41,14 +47,13 @@ public class UiTest extends UiBaseTest {
     }
 
     @Test
-    void name() {
+    void createNewCustomerTest() {
         new LoginPage(driver)
                 .chooseBankManagerLogin()
                 .getBankManagerPage()
                 .clickAddCustomerBtn()
-                .createNewCustomer().goToCustomersPage()
-                .checkCustomerCreated();
-
-
+                .createNewCustomer(customer)
+                .goToCustomersPage()
+                .checkCustomerCreated(customer);
     }
 }

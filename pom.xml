@@ -23,9 +23,18 @@
         <selenium-java.ver>3.141.59</selenium-java.ver>
         <hamcrest.ver>2.2</hamcrest.ver>
         <assertj.ver>3.23.1</assertj.ver>
+        <slf4j.ver>1.7.36</slf4j.ver>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.ver}</version>
+<!--            <scope>test</scope>-->
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
